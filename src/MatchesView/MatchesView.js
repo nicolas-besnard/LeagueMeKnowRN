@@ -2,9 +2,7 @@ import {isBefore, isToday} from 'date-fns'
 import React, {useRef} from 'react'
 import {SectionList, StyleSheet, View} from 'react-native'
 import {MatchFavoritesProvider} from '@contexts/matchFavorites'
-import {
-  useLeagueFavoritesContext,
-} from '@contexts/leagueFavorites'
+import {useLeagueFavoritesContext} from '@contexts/leagueFavorites'
 import {backgroundColor} from '../colors'
 import Header from './Header'
 import Match from './Match'
@@ -17,11 +15,11 @@ const Matches = () => {
   const listRef = useRef(null)
   const {state: leagueIds} = useLeagueFavoritesContext()
 
-  const sections = useMatches(leagueIds, matches => {
+  const sections = useMatches(leagueIds, (matches) => {
     if (listRef.current) {
       let matchIsToday, matchIsBefore
 
-      let sectionId = matches.findIndex(section => {
+      let sectionId = matches.findIndex((section) => {
         matchIsToday = isToday(section.startDate)
         matchIsBefore = isBefore(section.startDate, new Date())
         return matchIsToday || matchIsBefore
@@ -51,7 +49,7 @@ const Matches = () => {
         ListHeaderComponent={() => <LeaguePicker />}
         ItemSeparatorComponent={() => <ListSeparator />}
         renderSectionHeader={({section}) => <Header section={section} />}
-        keyExtractor={item => item.id}
+        keyExtractor={(item) => item.id}
         getItemLayout={(data, index) => {
           return {
             length: 75,
@@ -67,7 +65,7 @@ const Matches = () => {
 const MatchesView = () => {
   return (
     <MatchFavoritesProvider>
-        <Matches />
+      <Matches />
     </MatchFavoritesProvider>
   )
 }

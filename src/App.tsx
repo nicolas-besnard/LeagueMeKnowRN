@@ -8,7 +8,7 @@
  * @format
  */
 
-import 'react-native-gesture-handler';
+import 'react-native-gesture-handler'
 import React, {useEffect} from 'react'
 import {SafeAreaView, StatusBar} from 'react-native'
 import {Notification, Notifications} from 'react-native-notifications'

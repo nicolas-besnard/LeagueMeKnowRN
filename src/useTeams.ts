@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react'
-import ScheduleClient from './ScheduleClient'
-import TeamsPresenter from './TeamsPresenter'
+import ScheduleClient from 'ScheduleClient'
+import TeamsPresenter from 'TeamsPresenter'
+import type {Team} from 'MatchCache'
 
 const useTeams = ({leagueIds = []}) => {
-  const [teams, setTeams] = useState([])
+  const [teams, setTeams] = useState<Team[]>([])
 
   useEffect(() => {
     async function fetchTeams() {

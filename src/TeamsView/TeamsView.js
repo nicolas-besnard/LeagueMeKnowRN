@@ -1,6 +1,6 @@
 import React from 'react'
 import {StyleSheet, View, FlatList} from 'react-native'
-import { useLeagueFavoritesContext, } from '@contexts/leagueFavorites'
+import {useLeagueFavoritesContext} from '@contexts/leagueFavorites'
 import {backgroundColor} from '../colors'
 import useTeams from '../useTeams'
 import Team from './Team'
@@ -9,7 +9,7 @@ import ListSeparator from '../ListSeparator'
 
 const TeamsList = () => {
   const {state: leagueIds} = useLeagueFavoritesContext()
-  console.log("before useTeams", leagueIds)
+  console.log('before useTeams', leagueIds)
   const teams = useTeams({leagueIds})
 
   return (
@@ -20,16 +20,14 @@ const TeamsList = () => {
         renderItem={({item}) => <Team team={item} />}
         ListHeaderComponent={() => <LeaguePicker />}
         ItemSeparatorComponent={() => <ListSeparator />}
-        keyExtractor={team => team.code}
+        keyExtractor={(team) => team.code}
       />
     </View>
   )
 }
 
 const TeamsView = () => {
-  return (
-      <TeamsList />
-  )
+  return <TeamsList />;
 }
 
 const styles = StyleSheet.create({

@@ -1,14 +1,58 @@
-import MatchCache from './MatchCache'
+import MatchCache from 'MatchCache'
+import type {LeagueIds, Match, MatchState} from 'MatchCache'
+
+interface LeagueJSON {
+  name: string
+  slug: string
+}
+
+interface RecordJSON {
+  wins: number
+  losses: number
+}
+
+interface TeamJSON {
+  name: string
+  code: string
+  image: string
+  league: LeagueJSON
+  record: RecordJSON
+}
+
+interface MatchJSON {
+  id: string
+  teams: TeamJSON[]
+}
+
+interface EventJSON {
+  match: MatchJSON
+  league: LeagueJSON
+  startTime: string
+  state: MatchState
+}
+
+interface ScheduleJSON {
+  events: EventJSON[]
+}
+
+interface DataJSON {
+  schedule: ScheduleJSON
+}
+
+interface ScheduleResponseJSON {
+  data: DataJSON
+}
 
 class ScheduleClient {
-  static leagueSlugFromLeagueIds({leagueIds}) {
+  static leagueSlugFromLeagueIds({leagueIds}: {leagueIds: LeagueIds}): string {
     return leagueIds
-      .map(id => parseInt(id))
+      .map((id) => parseInt(id, 10))
       .sort((a, b) => a - b)
       .join('')
   }
 
-  static async getMatches({leagueIds}) {
+  // eslint-disable-next-line prettier/prettier
+  static async getMatches({leagueIds}: {leagueIds: LeagueIds}): Promise<Match[]> {
     console.log('[ScheduleClient] getMatches - for league', leagueIds)
 
     const matchCache = new MatchCache(leagueIds)
@@ -33,7 +77,8 @@ class ScheduleClient {
     return remoteMatches
   }
 
-  static async fetchMatchesFromRemoteServer({leagueIds}) {
+  // eslint-disable-next-line prettier/prettier
+  static async fetchMatchesFromRemoteServer({leagueIds}: {leagueIds: LeagueIds}): Promise<Match[]> {
     const leagueIdsParameter = leagueIds.join('%2C')
 
     const request = await fetch(
@@ -48,10 +93,10 @@ class ScheduleClient {
       },
     )
 
-    const result = await request.json()
+    const result: ScheduleResponseJSON = await request.json()
 
     return result.data.schedule.events
-      .map(event => {
+      .map((event) => {
         return {
           id: event.match.id,
           team1: {
@@ -74,7 +119,7 @@ class ScheduleClient {
           league: event.league.name,
         }
       })
-      .filter(event => event.team1.name !== 'TBD')
+      .filter((event) => event.team1.name !== 'TBD')
   }
 }
 

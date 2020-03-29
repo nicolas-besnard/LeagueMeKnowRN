@@ -1,11 +1,30 @@
 import React, {createContext, useContext, useReducer, useEffect} from 'react'
 import AsyncStorage from '@react-native-community/async-storage'
 
+import type {ReactNode, Dispatch} from 'react'
+import type {LeagueIds} from 'MatchCache'
+
 const leagueFavoritesCacheKey = 'leagueFavorites'
 
-const LeagueFavoritesContext = createContext()
+type State = LeagueIds
+type Action =
+  | {type: 'add'; leagueId: string}
+  | {type: 'remove'; leagueId: string}
+  | {type: 'init'; ids: LeagueIds}
 
-async function saveFavoritesInStorage(ids) {
+interface Context {
+  state: LeagueIds
+  dispatch: Dispatch<Action>
+}
+
+const defaultContext = {
+  state: [],
+  dispatch: (): void => {},
+}
+
+const LeagueFavoritesContext = createContext<Context>(defaultContext)
+
+async function saveFavoritesInStorage(ids: LeagueIds) {
   try {
     await AsyncStorage.setItem(leagueFavoritesCacheKey, JSON.stringify(ids))
   } catch (e) {
@@ -16,7 +35,7 @@ async function saveFavoritesInStorage(ids) {
   }
 }
 
-function leagueFavoritesReducer(state, action) {
+function leagueFavoritesReducer(state: State, action: Action) {
   console.log({action, state})
   switch (action.type) {
     case 'add': {
@@ -25,15 +44,12 @@ function leagueFavoritesReducer(state, action) {
       return newState
     }
     case 'remove': {
-      const newState = state.filter(leagueId => leagueId !== action.leagueId)
+      const newState = state.filter((leagueId) => leagueId !== action.leagueId)
       saveFavoritesInStorage(newState)
       return newState
     }
     case 'init': {
       return action.ids
-    }
-    default: {
-      throw new Error(`Unhandled action type: ${action.type}`)
     }
   }
 }
@@ -44,14 +60,14 @@ const useLeagueFavorites = () => {
   return {state, dispatch}
 }
 
-function LeagueFavoritesProvider({children}) {
+function LeagueFavoritesProvider({children}: {children: ReactNode}) {
   const {state, dispatch} = useLeagueFavorites()
 
   useEffect(() => {
-    async function getLeagueFavorites() {
+    async function getLeagueFavorites(): Promise<LeagueIds> {
       try {
         const value = await AsyncStorage.getItem(leagueFavoritesCacheKey)
-        const data = JSON.parse(value)
+        const data = JSON.parse(value || '[]')
 
         if (!data) {
           return ['98767991302996019', '98767991299243165']
@@ -60,10 +76,11 @@ function LeagueFavoritesProvider({children}) {
         return data
       } catch (e) {
         console.log('[matchFavorites] Failed to get favorites from storage')
+        return []
       }
     }
 
-    getLeagueFavorites().then(data => dispatch({type: 'init', ids: data}))
+    getLeagueFavorites().then((data) => dispatch({type: 'init', ids: data}))
   }, [])
 
   return (
@@ -73,8 +90,8 @@ function LeagueFavoritesProvider({children}) {
   )
 }
 
-function useLeagueFavoritesContext() {
-  const context = useContext(LeagueFavoritesContext)
+function useLeagueFavoritesContext(): Context {
+  const context: Context = useContext(LeagueFavoritesContext)
 
   if (context === undefined) {
     throw new Error(

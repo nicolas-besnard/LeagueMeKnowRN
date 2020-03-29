@@ -1,9 +1,18 @@
 import React, {useCallback} from 'react'
 import {FlatList, Image, TouchableWithoutFeedback} from 'react-native'
 
-import {useLeagueFavoritesContext} from '@contexts/leagueFavorites.js'
+import {useLeagueFavoritesContext} from '@contexts/leagueFavorites'
 
-const leagueImages = [
+interface League {
+  id: string
+  slug: string
+  name: string
+  region: string
+  image: string
+  priority: number
+}
+
+const leagueImages: League[] = [
   {
     id: '100695891328981122',
     slug: 'european-masters',
@@ -150,7 +159,13 @@ const leagueImages = [
   },
 ].sort((a, b) => a.priority - b.priority)
 
-const LeagueImage = ({league, selected, onSelect}) => {
+type LeagueImageProps = {
+  league: League
+  selected: boolean
+  onSelect: (_leagueId: string) => void
+}
+
+const LeagueImage = ({league, selected, onSelect}: LeagueImageProps) => {
   const opacity = selected ? 1 : 0.4
   return (
     <TouchableWithoutFeedback onPress={() => onSelect(league.id)}>
@@ -166,7 +181,7 @@ const LeaguePicker = () => {
   const {state, dispatch} = useLeagueFavoritesContext()
 
   const onSelect = useCallback(
-    leagueId => {
+    (leagueId) => {
       if (state.length === 1 && state[0] === leagueId) {
         return
       }
