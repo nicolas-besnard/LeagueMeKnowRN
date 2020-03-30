@@ -1,12 +1,13 @@
 import React from 'react'
-import {Image, StyleSheet, Text, View} from 'react-native'
+import FastImage from 'react-native-fast-image'
+import {StyleSheet, Text, View} from 'react-native'
 import {backgroundColor, blueColor, redColor, secondaryTextColor} from '../colors'
 
 const Team = ({team}) => {
   return (
     <View style={styles.container}>
       <View style={styles.teamInfo}>
-        <Image
+        <FastImage
           style={{width: 45, height: 45, marginRight: 30}}
           source={{uri: team.logoUrl}}
         />

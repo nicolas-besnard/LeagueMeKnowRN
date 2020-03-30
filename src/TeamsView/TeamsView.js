@@ -1,5 +1,5 @@
 import React, {useRef} from 'react'
-import {StyleSheet, View, FlatList, Animated} from 'react-native'
+import {StyleSheet, SafeAreaView, FlatList, Animated} from 'react-native'
 import {useLeagueFavoritesContext} from '@contexts/leagueFavorites'
 import {backgroundColor} from '../colors'
 import useTeams from '../useTeams'
@@ -14,7 +14,7 @@ const TeamsList = () => {
   const teams = useTeams({leagueIds})
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <LeaguePicker scrollY={scrollY} />
       <AnimatedFlatList
         data={teams.sort((a, b) => b.record.wins - a.record.wins)}
@@ -27,7 +27,7 @@ const TeamsList = () => {
           {useNativeDriver: false},
         )}
       />
-    </View>
+    </SafeAreaView>
   )
 }
 
@@ -38,6 +38,9 @@ const TeamsView = () => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: backgroundColor,
+    position: 'absolute',
+    bottom: 0,
+    top: 0,
   },
 })
 

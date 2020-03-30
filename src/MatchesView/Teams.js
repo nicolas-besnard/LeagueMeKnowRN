@@ -1,5 +1,6 @@
 import React from 'react'
-import { Image, StyleSheet, Text, View } from 'react-native'
+import FastImage from 'react-native-fast-image'
+import {StyleSheet, Text, View } from 'react-native'
 import { secondaryTextColor } from '../colors'
 
 const Teams = ({ match }) => {
@@ -8,14 +9,14 @@ const Teams = ({ match }) => {
       <View style={styles.team1Container}>
         <Text style={styles.text}>{match.sectionName}</Text>
         <Text style={[styles.text, styles.team1]}>{match.team1.code}</Text>
-        <Image
+        <FastImage
           style={{ width: 45, height: 45 }}
           source={{ uri: match.team1.logoUrl }}
         />
       </View>
       <Text style={[styles.text, styles.vs]}> VS </Text>
       <View style={styles.team2Container}>
-        <Image
+        <FastImage
           style={{ width: 45, height: 45 }}
           source={{ uri: match.team2.logoUrl }}
         />

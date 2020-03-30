@@ -1,5 +1,6 @@
 import React, {useCallback} from 'react'
 import {FlatList, TouchableWithoutFeedback, Animated} from 'react-native'
+import FastImage from 'react-native-fast-image'
 
 import {useLeagueFavoritesContext} from '@contexts/leagueFavorites'
 
@@ -177,6 +178,7 @@ const HEADER_MAX_HEIGHT = MAX_IMAGE_SIZE + (2 * MAX_MARGIN_SIZE)
 const HEADER_MIN_HEIGHT = MIN_IMAGE_SIZE + (2 * MIN_MARGIN_SIZE)
 const HEADER_SCROLL_DISTANCE = HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT
 
+const AnimatedFastImage = Animated.createAnimatedComponent(FastImage)
 const LeagueImage = ({
   league,
   selected,
@@ -187,7 +189,7 @@ const LeagueImage = ({
   const opacity = selected ? 1 : 0.4
   return (
     <TouchableWithoutFeedback onPress={() => onSelect(league.id)}>
-      <Animated.Image
+      <AnimatedFastImage
         style={{
           width: imageSize,
           height: imageSize,
