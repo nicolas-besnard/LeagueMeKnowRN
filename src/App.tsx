@@ -56,7 +56,7 @@ const App = () => {
       <StatusBar barStyle="light-content" />
       <SafeAreaView style={{flex: 0, backgroundColor: backgroundColor}} />
       <LeagueFavoritesProvider>
-        <Tab.Navigator tabBarOptions={{style, labelStyle}}>
+        <Tab.Navigator initialRouteName="Matches" tabBarOptions={{style, labelStyle}}>
           <Tab.Screen name="Matches" component={MatchesView} />
           <Tab.Screen name="Teams" component={TeamsView} />
         </Tab.Navigator>

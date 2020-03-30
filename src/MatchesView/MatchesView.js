@@ -1,6 +1,6 @@
 import {isBefore, isToday} from 'date-fns'
 import React, {useRef} from 'react'
-import {SectionList, StyleSheet, View} from 'react-native'
+import {SectionList, StyleSheet, View, Animated} from 'react-native'
 import {MatchFavoritesProvider} from '@contexts/matchFavorites'
 import {useLeagueFavoritesContext} from '@contexts/leagueFavorites'
 import {backgroundColor} from '../colors'
@@ -13,6 +13,7 @@ import useMatches from '../useMatches'
 
 const Matches = () => {
   const listRef = useRef(null)
+  const scrollY = useRef(new Animated.Value(0)).current
   const {state: leagueIds} = useLeagueFavoritesContext()
 
   const sections = useMatches(leagueIds, (matches) => {
@@ -40,13 +41,12 @@ const Matches = () => {
   })
 
   return (
-    <View>
+    <View style={styles.container}>
+      <LeaguePicker scrollY={scrollY} />
       <SectionList
         ref={listRef}
-        style={styles.section}
         sections={sections}
         renderItem={({item}) => <Match match={item} />}
-        ListHeaderComponent={() => <LeaguePicker />}
         ItemSeparatorComponent={() => <ListSeparator />}
         renderSectionHeader={({section}) => <Header section={section} />}
         keyExtractor={(item) => item.id}
@@ -57,6 +57,11 @@ const Matches = () => {
             index: index,
           }
         }}
+        scrollEventThrottle={1}
+        onScroll={Animated.event(
+          [{nativeEvent: {contentOffset: {y: scrollY}}}],
+          {useNativeDriver: false},
+        )}
       />
     </View>
   )
@@ -69,8 +74,9 @@ const MatchesView = () => {
     </MatchFavoritesProvider>
   )
 }
+
 const styles = StyleSheet.create({
-  section: {
+  container: {
     backgroundColor: backgroundColor,
   },
 })

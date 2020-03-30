@@ -1,5 +1,5 @@
 import React, {useCallback} from 'react'
-import {FlatList, Image, TouchableWithoutFeedback} from 'react-native'
+import {FlatList, TouchableWithoutFeedback, Animated} from 'react-native'
 
 import {useLeagueFavoritesContext} from '@contexts/leagueFavorites'
 
@@ -159,26 +159,69 @@ const leagueImages: League[] = [
   },
 ].sort((a, b) => a.priority - b.priority)
 
+
 type LeagueImageProps = {
   league: League
   selected: boolean
   onSelect: (_leagueId: string) => void
+  imageSize: Animated.Value
+  imageMargin: Animated.Value
 }
 
-const LeagueImage = ({league, selected, onSelect}: LeagueImageProps) => {
+export const MAX_IMAGE_SIZE = 60
+export const MIN_IMAGE_SIZE = 30
+export const MAX_MARGIN_SIZE = 15
+export const MIN_MARGIN_SIZE = 5
+
+const HEADER_MAX_HEIGHT = MAX_IMAGE_SIZE + (2 * MAX_MARGIN_SIZE)
+const HEADER_MIN_HEIGHT = MIN_IMAGE_SIZE + (2 * MIN_MARGIN_SIZE)
+const HEADER_SCROLL_DISTANCE = HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT
+
+const LeagueImage = ({
+  league,
+  selected,
+  onSelect,
+  imageSize,
+  imageMargin,
+}: LeagueImageProps) => {
   const opacity = selected ? 1 : 0.4
   return (
     <TouchableWithoutFeedback onPress={() => onSelect(league.id)}>
-      <Image
-        style={{width: 60, height: 60, margin: 15, opacity: opacity}}
+      <Animated.Image
+        style={{
+          width: imageSize,
+          height: imageSize,
+          margin: imageMargin,
+          opacity: opacity,
+        }}
         source={{uri: league.image}}
       />
     </TouchableWithoutFeedback>
   )
 }
 
-const LeaguePicker = () => {
+const AnimatedFlatList = Animated.createAnimatedComponent(FlatList)
+
+const LeaguePicker = ({scrollY}: {scrollY: Animated.Value}) => {
   const {state, dispatch} = useLeagueFavoritesContext()
+
+  const headerHeight = scrollY.interpolate({
+    inputRange: [0, HEADER_SCROLL_DISTANCE],
+    outputRange: [HEADER_MAX_HEIGHT, HEADER_MIN_HEIGHT],
+    extrapolate: 'clamp',
+  })
+
+  const imageSize = scrollY.interpolate({
+    inputRange: [0, 45],
+    outputRange: [60, 30],
+    extrapolate: 'clamp',
+  })
+
+  const imageMargin = scrollY.interpolate({
+    inputRange: [0, 45],
+    outputRange: [15, 5],
+    extrapolate: 'clamp',
+  })
 
   const onSelect = useCallback(
     (leagueId) => {
@@ -196,12 +239,16 @@ const LeaguePicker = () => {
   )
 
   return (
-    <FlatList
+    <Animated.View style={{height: headerHeight}}>
+    <AnimatedFlatList
       horizontal
+
       data={leagueImages}
       renderItem={({item}) => {
         return (
           <LeagueImage
+            imageSize={imageSize}
+            imageMargin={imageMargin}
             league={item}
             onSelect={onSelect}
             selected={state.includes(item.id)}
@@ -209,6 +256,7 @@ const LeaguePicker = () => {
         )
       }}
     />
+    </Animated.View>
   )
 }
 

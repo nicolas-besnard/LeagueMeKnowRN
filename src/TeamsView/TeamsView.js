@@ -1,5 +1,5 @@
-import React from 'react'
-import {StyleSheet, View, FlatList} from 'react-native'
+import React, {useRef} from 'react'
+import {StyleSheet, View, FlatList, Animated} from 'react-native'
 import {useLeagueFavoritesContext} from '@contexts/leagueFavorites'
 import {backgroundColor} from '../colors'
 import useTeams from '../useTeams'
@@ -7,35 +7,36 @@ import Team from './Team'
 import LeaguePicker from '../LeaguePicker'
 import ListSeparator from '../ListSeparator'
 
+const AnimatedFlatList = Animated.createAnimatedComponent(FlatList)
 const TeamsList = () => {
   const {state: leagueIds} = useLeagueFavoritesContext()
-  console.log('before useTeams', leagueIds)
+  const scrollY = useRef(new Animated.Value(0)).current
   const teams = useTeams({leagueIds})
 
   return (
     <View style={styles.container}>
-      <FlatList
-        style={styles.flatList}
+      <LeaguePicker scrollY={scrollY} />
+      <AnimatedFlatList
         data={teams.sort((a, b) => b.record.wins - a.record.wins)}
         renderItem={({item}) => <Team team={item} />}
-        ListHeaderComponent={() => <LeaguePicker />}
         ItemSeparatorComponent={() => <ListSeparator />}
         keyExtractor={(team) => team.code}
+        scrollEventThrottle={1}
+        onScroll={Animated.event(
+          [{nativeEvent: {contentOffset: {y: scrollY}}}],
+          {useNativeDriver: false},
+        )}
       />
     </View>
   )
 }
 
 const TeamsView = () => {
-  return <TeamsList />;
+  return <TeamsList />
 }
 
 const styles = StyleSheet.create({
-  flatList: {
-    backgroundColor: backgroundColor,
-  },
   container: {
-    flex: 1,
     backgroundColor: backgroundColor,
   },
 })
