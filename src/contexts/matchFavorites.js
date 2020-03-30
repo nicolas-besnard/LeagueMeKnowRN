@@ -80,7 +80,7 @@ const useMatchFavorites = () => {
     }
 
     getMatchFavorites().then(data => dispatch({type: 'init', ids: data}))
-  })
+  }, [])
 
   return {state, dispatch}
 }
