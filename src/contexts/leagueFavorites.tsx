@@ -69,7 +69,7 @@ function LeagueFavoritesProvider({children}: {children: ReactNode}) {
         const value = await AsyncStorage.getItem(leagueFavoritesCacheKey)
         const data = JSON.parse(value || '[]')
 
-        if (!data) {
+        if (!data || data.length === 0) {
           return ['98767991302996019', '98767991299243165']
         }
 

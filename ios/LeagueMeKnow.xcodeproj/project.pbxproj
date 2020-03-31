@@ -58,6 +58,7 @@
 		2D02E47B1E0B4A5D006451C7 /* LeagueMeKnow-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LeagueMeKnow-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* LeagueMeKnow-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LeagueMeKnow-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		47F0E5195A684BF80669252F /* Pods-LeagueMeKnow.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LeagueMeKnow.release.xcconfig"; path = "Target Support Files/Pods-LeagueMeKnow/Pods-LeagueMeKnow.release.xcconfig"; sourceTree = "<group>"; };
+		5ADE4A552433518C00B60C95 /* LeagueMeKnow.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = LeagueMeKnow.entitlements; path = LeagueMeKnow/LeagueMeKnow.entitlements; sourceTree = "<group>"; };
 		5E4EB9722642492F6E4C88A3 /* Pods-LeagueMeKnow-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LeagueMeKnow-tvOS.release.xcconfig"; path = "Target Support Files/Pods-LeagueMeKnow-tvOS/Pods-LeagueMeKnow-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		8DCB55FF0632AF7309BF3D71 /* Pods-LeagueMeKnow-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LeagueMeKnow-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-LeagueMeKnow-tvOSTests/Pods-LeagueMeKnow-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		96F87A44E0671F604BB4AC49 /* Pods-LeagueMeKnow-LeagueMeKnowTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LeagueMeKnow-LeagueMeKnowTests.release.xcconfig"; path = "Target Support Files/Pods-LeagueMeKnow-LeagueMeKnowTests/Pods-LeagueMeKnow-LeagueMeKnowTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -125,6 +126,7 @@
 		13B07FAE1A68108700A75B9A /* LeagueMeKnow */ = {
 			isa = PBXGroup;
 			children = (
+				5ADE4A552433518C00B60C95 /* LeagueMeKnow.entitlements */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -629,7 +631,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CODE_SIGN_ENTITLEMENTS = LeagueMeKnow/LeagueMeKnow.entitlements;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 7K3Z2N2BX9;
 				ENABLE_BITCODE = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -657,7 +660,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CODE_SIGN_ENTITLEMENTS = LeagueMeKnow/LeagueMeKnow.entitlements;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 7K3Z2N2BX9;
 				INFOPLIST_FILE = LeagueMeKnow/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
