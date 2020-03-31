@@ -8,8 +8,10 @@ import Header from './Header'
 import Match from './Match'
 import ListSeparator from '../ListSeparator'
 import LeaguePicker from '../LeaguePicker'
-
+import {HEADER_SCROLL_DISTANCE} from '../LeaguePicker'
 import useMatches from '../useMatches'
+
+const AnimatedSectionList = Animated.createAnimatedComponent(SectionList)
 
 const Matches = () => {
   const listRef = useRef(null)
@@ -40,11 +42,20 @@ const Matches = () => {
     }
   })
 
+  const translateY = scrollY.interpolate({
+    inputRange: [0, HEADER_SCROLL_DISTANCE],
+    outputRange: [0, -30],
+    extrapolate: 'clamp',
+  })
+
   return (
     <View style={styles.container}>
       <LeaguePicker scrollY={scrollY} />
-      <SectionList
+      <AnimatedSectionList
         ref={listRef}
+        style={{
+          transform: [{translateY: translateY}]
+        }}
         sections={sections}
         renderItem={({item}) => <Match match={item} />}
         ItemSeparatorComponent={() => <ListSeparator />}
@@ -60,7 +71,7 @@ const Matches = () => {
         scrollEventThrottle={1}
         onScroll={Animated.event(
           [{nativeEvent: {contentOffset: {y: scrollY}}}],
-          {useNativeDriver: false},
+          {useNativeDriver: true},
         )}
       />
     </View>
