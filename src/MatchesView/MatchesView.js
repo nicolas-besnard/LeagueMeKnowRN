@@ -1,5 +1,5 @@
 import {isBefore, isToday} from 'date-fns'
-import React, {useRef} from 'react'
+import React, {useRef, useState} from 'react'
 import {SectionList, StyleSheet, View, Animated} from 'react-native'
 import {MatchFavoritesProvider} from '@contexts/matchFavorites'
 import {useLeagueFavoritesContext} from '@contexts/leagueFavorites'
@@ -16,10 +16,11 @@ const AnimatedSectionList = Animated.createAnimatedComponent(SectionList)
 const Matches = () => {
   const listRef = useRef(null)
   const scrollY = useRef(new Animated.Value(0)).current
+  const [scrollDone, setScrollDone] = useState(false)
   const {state: leagueIds} = useLeagueFavoritesContext()
 
   const sections = useMatches(leagueIds, (matches) => {
-    if (listRef.current) {
+    if (listRef.current && !scrollDone) {
       let matchIsToday, matchIsBefore
 
       let sectionId = matches.findIndex((section) => {
@@ -33,6 +34,7 @@ const Matches = () => {
       }
 
       setTimeout(() => {
+        setScrollDone(true)
         listRef.current.scrollToLocation({
           animated: false,
           itemIndex: 0,
@@ -88,6 +90,7 @@ const MatchesView = () => {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     backgroundColor: backgroundColor,
   },
 })
