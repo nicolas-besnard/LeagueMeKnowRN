@@ -61,7 +61,6 @@ const App = () => {
               let iconName
               let opacity
 
-              console.log('route name', route.name)
               if (route.name === 'Matches') {
                 opacity = focused ? 1 : 0.4;
                 iconName = focused

@@ -4,7 +4,7 @@ import {add, isBefore, parseISO} from 'date-fns'
 import type {Maybe} from 'monads'
 
 const matchesCacheKey: string = 'matchesv1'
-const matchesCacheDurationInMinutes: number = 10
+const matchesCacheDurationInMinutes: number = 30
 
 type LeagueIds = string[]
 
@@ -38,6 +38,7 @@ interface BaseMatch {
   team2: Team
   state: MatchState
   startDate: string
+  name: string
 }
 
 interface CachedMatch extends BaseMatch {

@@ -1,6 +1,5 @@
-const API_URL =
-  'https://esports-api.lolesports.com/persisted/lolmobile/getSchedule?hl=en-US&leagueId=';
-
+import {isAfter} from 'date-fns'
+const API_URL = 'https://esports-api.lolesports.com/persisted/gw';
 type RequestMethod = 'GET' | 'POST'
 interface RequestHeader {
   [header: string]: string
@@ -20,8 +19,6 @@ async function httpClient(endpoint: string, customConfig: RequestConfig = {}) {
   const defaultHeaders = {
     'x-api-key': 'jN7hVlu1JjyQ1AElkd9K319ya9Pf8rp6TUebdwxc',
     'Content-Type': 'application/json',
-    'User-Agent':
-      'LeagueMeKnow V1.0 (development) (contact besnard.nicolas@gmail.com)',
   }
 
   const config = {
@@ -33,7 +30,7 @@ async function httpClient(endpoint: string, customConfig: RequestConfig = {}) {
     },
   }
 
-  let url = `${API_URL}/${endpoint}`
+  let url = `${API_URL}${endpoint}`
 
   const response = await fetch(url, config)
   const data = await response.json()
@@ -45,4 +42,4 @@ async function httpClient(endpoint: string, customConfig: RequestConfig = {}) {
   }
 }
 
-export default httpClient;
+export default httpClient

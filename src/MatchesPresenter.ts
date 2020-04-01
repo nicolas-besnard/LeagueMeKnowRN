@@ -10,6 +10,7 @@ interface MatchSection {
   startDateWeekDay: string
   startDate: Date
   startDateString: string
+  name: string
   data: Match[]
 }
 
@@ -38,6 +39,7 @@ class MatchesPresenter {
           startDateWeekDay: format(dateDate, 'EEEE'),
           startDate: dateDate,
           startDateString: date,
+          name: grouped[date][0].name,
           data: grouped[date],
         }
         array.push(newSection)
