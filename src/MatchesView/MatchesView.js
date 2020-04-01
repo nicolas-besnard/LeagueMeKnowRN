@@ -25,7 +25,7 @@ const Matches = () => {
 
       let sectionId = matches.findIndex((section) => {
         matchIsToday = isToday(section.startDate)
-        matchIsBefore = isBefore(section.startDate, new Date())
+        matchIsBefore = isBefore(section.startDate, new Date().getTime())
         return matchIsToday || matchIsBefore
       })
 
@@ -56,7 +56,7 @@ const Matches = () => {
       <AnimatedSectionList
         ref={listRef}
         style={{
-          transform: [{translateY: translateY}]
+          transform: [{translateY: translateY}],
         }}
         sections={sections}
         renderItem={({item}) => <Match match={item} />}

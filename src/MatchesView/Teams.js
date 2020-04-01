@@ -9,7 +9,7 @@ const Teams = ({match}) => {
     <View style={styles.container}>
       <View style={styles.team1Container}>
         <Text style={styles.text}>{match.sectionName}</Text>
-        <Text style={[styles.text, styles.team1]}>{match.team1.code}</Text>
+        <Text style={[styles.text, styles.team1]}>{match.team1.name}</Text>
         {flipper.displayTeamLogo && (
           <FastImage
             style={{width: 45, height: 45}}
@@ -23,7 +23,7 @@ const Teams = ({match}) => {
             style={{width: 45, height: 45}}
             source={{uri: match.team2.logoUrl}}
           />)}
-        <Text style={[styles.text, styles.team2]}>{match.team2.code}</Text>
+        <Text style={[styles.text, styles.team2]}>{match.team2.name}</Text>
       </View>
     </View>
   )
