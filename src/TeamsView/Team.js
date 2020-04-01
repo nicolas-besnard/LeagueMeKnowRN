@@ -1,16 +1,24 @@
 import React from 'react'
 import FastImage from 'react-native-fast-image'
 import {StyleSheet, Text, View} from 'react-native'
-import {backgroundColor, blueColor, redColor, secondaryTextColor} from '../colors'
+import {
+  backgroundColor,
+  blueColor,
+  redColor,
+  secondaryTextColor,
+} from '../colors'
+import flipper from '../flipper'
 
 const Team = ({team}) => {
   return (
     <View style={styles.container}>
       <View style={styles.teamInfo}>
-        <FastImage
-          style={{width: 45, height: 45, marginRight: 30}}
-          source={{uri: team.logoUrl}}
-        />
+        {flipper.displayTeamLogo && (
+          <FastImage
+            style={{width: 45, height: 45, marginRight: 30}}
+            source={{uri: team.logoUrl}}
+          />
+        )}
         <Text style={styles.teamName}>{team.name}</Text>
         <Text style={styles.league}>{team.league.name}</Text>
       </View>

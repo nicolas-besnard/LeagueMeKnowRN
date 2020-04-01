@@ -1,25 +1,28 @@
 import React from 'react'
 import FastImage from 'react-native-fast-image'
-import {StyleSheet, Text, View } from 'react-native'
-import { secondaryTextColor } from '../colors'
+import {StyleSheet, Text, View} from 'react-native'
+import {secondaryTextColor} from '../colors'
+import flipper from '../flipper'
 
-const Teams = ({ match }) => {
+const Teams = ({match}) => {
   return (
     <View style={styles.container}>
       <View style={styles.team1Container}>
         <Text style={styles.text}>{match.sectionName}</Text>
         <Text style={[styles.text, styles.team1]}>{match.team1.code}</Text>
-        <FastImage
-          style={{ width: 45, height: 45 }}
-          source={{ uri: match.team1.logoUrl }}
-        />
+        {flipper.displayTeamLogo && (
+          <FastImage
+            style={{width: 45, height: 45}}
+            source={{uri: match.team1.logoUrl}}
+          />)}
       </View>
       <Text style={[styles.text, styles.vs]}> VS </Text>
       <View style={styles.team2Container}>
-        <FastImage
-          style={{ width: 45, height: 45 }}
-          source={{ uri: match.team2.logoUrl }}
-        />
+        {flipper.displayTeamLogo && (
+          <FastImage
+            style={{width: 45, height: 45}}
+            source={{uri: match.team2.logoUrl}}
+          />)}
         <Text style={[styles.text, styles.team2]}>{match.team2.code}</Text>
       </View>
     </View>
