@@ -14,8 +14,12 @@ class TeamsPresenter {
   teams(): Team[] {
     const teams: GroupedTeam = this.matches.reduce(
       (hash: GroupedTeam, match) => {
-        hash[match.team1.code] = match.team1
-        hash[match.team2.code] = match.team2
+        if (match.team1.code !== 'TBD') {
+          hash[match.team1.code] = match.team1
+        }
+        if (match.team2.code !== 'TBD') {
+          hash[match.team2.code] = match.team2
+        }
         return hash
       },
       {},
