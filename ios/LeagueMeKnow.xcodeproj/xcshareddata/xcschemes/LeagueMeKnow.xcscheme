@@ -38,6 +38,16 @@
                ReferencedContainer = "container:LeagueMeKnow.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "5A2D7DAC243507300025D324"
+               BuildableName = "LeagueMeKnowUITests.xctest"
+               BlueprintName = "LeagueMeKnowUITests"
+               ReferencedContainer = "container:LeagueMeKnow.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

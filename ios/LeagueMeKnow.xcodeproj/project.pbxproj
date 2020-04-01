@@ -16,6 +16,7 @@
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* LeagueMeKnowTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* LeagueMeKnowTests.m */; };
+		5A2D7DB0243507300025D324 /* LeagueMeKnowUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2D7DAF243507300025D324 /* LeagueMeKnowUITests.swift */; };
 		8A916747A219A1CA72BDE963 /* libPods-LeagueMeKnow-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0313A6BBDA287191732A4E42 /* libPods-LeagueMeKnow-tvOS.a */; };
 		933A385CEF7CDC3606420A80 /* libPods-LeagueMeKnow.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 984757C6E67093C169D2F1E9 /* libPods-LeagueMeKnow.a */; };
 		B12BD7238150794D55AA764B /* libPods-LeagueMeKnow-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F3253E102462A455DE3037D0 /* libPods-LeagueMeKnow-tvOSTests.a */; };
@@ -36,6 +37,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 2D02E47A1E0B4A5D006451C7;
 			remoteInfo = "LeagueMeKnow-tvOS";
+		};
+		5A2D7DB2243507300025D324 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
+			remoteInfo = LeagueMeKnow;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -58,6 +66,9 @@
 		2D02E47B1E0B4A5D006451C7 /* LeagueMeKnow-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LeagueMeKnow-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* LeagueMeKnow-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LeagueMeKnow-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		47F0E5195A684BF80669252F /* Pods-LeagueMeKnow.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LeagueMeKnow.release.xcconfig"; path = "Target Support Files/Pods-LeagueMeKnow/Pods-LeagueMeKnow.release.xcconfig"; sourceTree = "<group>"; };
+		5A2D7DAD243507300025D324 /* LeagueMeKnowUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LeagueMeKnowUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5A2D7DAF243507300025D324 /* LeagueMeKnowUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeagueMeKnowUITests.swift; sourceTree = "<group>"; };
+		5A2D7DB1243507300025D324 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5ADE4A552433518C00B60C95 /* LeagueMeKnow.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = LeagueMeKnow.entitlements; path = LeagueMeKnow/LeagueMeKnow.entitlements; sourceTree = "<group>"; };
 		5E4EB9722642492F6E4C88A3 /* Pods-LeagueMeKnow-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LeagueMeKnow-tvOS.release.xcconfig"; path = "Target Support Files/Pods-LeagueMeKnow-tvOS/Pods-LeagueMeKnow-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		8DCB55FF0632AF7309BF3D71 /* Pods-LeagueMeKnow-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LeagueMeKnow-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-LeagueMeKnow-tvOSTests/Pods-LeagueMeKnow-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -100,6 +111,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B12BD7238150794D55AA764B /* libPods-LeagueMeKnow-tvOSTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5A2D7DAA243507300025D324 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,6 +169,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		5A2D7DAE243507300025D324 /* LeagueMeKnowUITests */ = {
+			isa = PBXGroup;
+			children = (
+				5A2D7DAF243507300025D324 /* LeagueMeKnowUITests.swift */,
+				5A2D7DB1243507300025D324 /* Info.plist */,
+			);
+			path = LeagueMeKnowUITests;
+			sourceTree = "<group>";
+		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -164,6 +191,7 @@
 				13B07FAE1A68108700A75B9A /* LeagueMeKnow */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* LeagueMeKnowTests */,
+				5A2D7DAE243507300025D324 /* LeagueMeKnowUITests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				86BEE08B0CDDB8F729F6499F /* Pods */,
@@ -180,6 +208,7 @@
 				00E356EE1AD99517003FC87E /* LeagueMeKnowTests.xctest */,
 				2D02E47B1E0B4A5D006451C7 /* LeagueMeKnow-tvOS.app */,
 				2D02E4901E0B4A5D006451C7 /* LeagueMeKnow-tvOSTests.xctest */,
+				5A2D7DAD243507300025D324 /* LeagueMeKnowUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -280,12 +309,31 @@
 			productReference = 2D02E4901E0B4A5D006451C7 /* LeagueMeKnow-tvOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		5A2D7DAC243507300025D324 /* LeagueMeKnowUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5A2D7DB6243507300025D324 /* Build configuration list for PBXNativeTarget "LeagueMeKnowUITests" */;
+			buildPhases = (
+				5A2D7DA9243507300025D324 /* Sources */,
+				5A2D7DAA243507300025D324 /* Frameworks */,
+				5A2D7DAB243507300025D324 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5A2D7DB3243507300025D324 /* PBXTargetDependency */,
+			);
+			name = LeagueMeKnowUITests;
+			productName = LeagueMeKnowUITests;
+			productReference = 5A2D7DAD243507300025D324 /* LeagueMeKnowUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 1140;
 				LastUpgradeCheck = 1130;
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
@@ -304,6 +352,12 @@
 						CreatedOnToolsVersion = 8.2.1;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 2D02E47A1E0B4A5D006451C7;
+					};
+					5A2D7DAC243507300025D324 = {
+						CreatedOnToolsVersion = 11.4;
+						DevelopmentTeam = 7K3Z2N2BX9;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 				};
 			};
@@ -324,6 +378,7 @@
 				00E356ED1AD99517003FC87E /* LeagueMeKnowTests */,
 				2D02E47A1E0B4A5D006451C7 /* LeagueMeKnow-tvOS */,
 				2D02E48F1E0B4A5D006451C7 /* LeagueMeKnow-tvOSTests */,
+				5A2D7DAC243507300025D324 /* LeagueMeKnowUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -354,6 +409,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		2D02E48E1E0B4A5D006451C7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5A2D7DAB243507300025D324 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -554,6 +616,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5A2D7DA9243507300025D324 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5A2D7DB0243507300025D324 /* LeagueMeKnowUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -566,6 +636,11 @@
 			isa = PBXTargetDependency;
 			target = 2D02E47A1E0B4A5D006451C7 /* LeagueMeKnow-tvOS */;
 			targetProxy = 2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */;
+		};
+		5A2D7DB3243507300025D324 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 13B07F861A680F5B00A75B9A /* LeagueMeKnow */;
+			targetProxy = 5A2D7DB2243507300025D324 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -632,7 +707,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = LeagueMeKnow/LeagueMeKnow.entitlements;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 7K3Z2N2BX9;
 				ENABLE_BITCODE = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -661,7 +736,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = LeagueMeKnow/LeagueMeKnow.entitlements;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 7K3Z2N2BX9;
 				INFOPLIST_FILE = LeagueMeKnow/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -784,6 +859,61 @@
 				SDKROOT = appletvos;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LeagueMeKnow-tvOS.app/LeagueMeKnow-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
+			};
+			name = Release;
+		};
+		5A2D7DB4243507300025D324 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 7K3Z2N2BX9;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = LeagueMeKnowUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cappie.SoundBoard.LeagueMeKnowUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = LeagueMeKnow;
+			};
+			name = Debug;
+		};
+		5A2D7DB5243507300025D324 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 7K3Z2N2BX9;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = LeagueMeKnowUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cappie.SoundBoard.LeagueMeKnowUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = LeagueMeKnow;
 			};
 			name = Release;
 		};
@@ -935,6 +1065,15 @@
 			buildConfigurations = (
 				2D02E4991E0B4A5E006451C7 /* Debug */,
 				2D02E49A1E0B4A5E006451C7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5A2D7DB6243507300025D324 /* Build configuration list for PBXNativeTarget "LeagueMeKnowUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5A2D7DB4243507300025D324 /* Debug */,
+				5A2D7DB5243507300025D324 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
