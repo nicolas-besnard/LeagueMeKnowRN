@@ -1,4 +1,5 @@
 import MatchCache from 'MatchCache'
+import httpClient from 'utils/httpClient'
 import type {LeagueIds, Match, MatchState} from 'MatchCache'
 
 interface LeagueJSON {
@@ -79,21 +80,10 @@ class ScheduleClient {
 
   // eslint-disable-next-line prettier/prettier
   static async fetchMatchesFromRemoteServer({leagueIds}: {leagueIds: LeagueIds}): Promise<Match[]> {
-    const leagueIdsParameter = leagueIds.join('%2C')
-
-    const request = await fetch(
-      `https://esports-api.lolesports.com/persisted/lolmobile/getSchedule?hl=en-US&leagueId=${leagueIdsParameter}`,
-      {
-        headers: {
-          'x-api-key': 'jN7hVlu1JjyQ1AElkd9K319ya9Pf8rp6TUebdwxc',
-          'Content-Type': 'application/json',
-          'User-Agent':
-            'LeagueMeKnow V1.0 (development) (contact besnard.nicolas@gmail.com)',
-        },
-      },
+    const parameters = new URLSearchParams({leagueIds: leagueIds} as any)
+    const result: ScheduleResponseJSON = await httpClient(
+      `/getSchedule?${parameters}`,
     )
-
-    const result: ScheduleResponseJSON = await request.json()
 
     return result.data.schedule.events
       .map((event) => {
