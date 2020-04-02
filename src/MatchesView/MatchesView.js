@@ -1,6 +1,7 @@
 import {isBefore, isToday} from 'date-fns'
-import React, {useRef, useState} from 'react'
-import {SectionList, StyleSheet, View, Animated} from 'react-native'
+import React, {useRef, useState, useCallback} from 'react'
+import {SectionList, StyleSheet, View, Animated, PixelRatio} from 'react-native'
+import sectionListGetItemLayout from 'react-native-section-list-get-item-layout'
 import {MatchFavoritesProvider} from '@contexts/matchFavorites'
 import {useLeagueFavoritesContext} from '@contexts/leagueFavorites'
 import {backgroundColor} from '../colors'
@@ -35,6 +36,7 @@ const Matches = () => {
 
       setTimeout(() => {
         setScrollDone(true)
+        console.log('[MatchesView] Scroll to ', sectionId)
         listRef.current.scrollToLocation({
           animated: false,
           itemIndex: 0,
@@ -43,6 +45,19 @@ const Matches = () => {
       }, 150)
     }
   })
+  const getItemLayout = useCallback(
+    sectionListGetItemLayout({
+      // The height of the row with rowData at the given sectionIndex and rowIndex
+      getItemHeight: (rowData, sectionIndex, rowIndex) => {
+        //console.log({sectionIndex, rowIndex})
+        return 100
+      },
+
+      // These four properties are optional
+      getSeparatorHeight: () => 1 / PixelRatio.get(), // The height of your separators
+      listHeaderHeight: 40, // The height of your list header
+    })
+  , [])
 
   const translateY = scrollY.interpolate({
     inputRange: [0, HEADER_SCROLL_DISTANCE],
@@ -63,13 +78,7 @@ const Matches = () => {
         ItemSeparatorComponent={() => <ListSeparator />}
         renderSectionHeader={({section}) => <Header section={section} />}
         keyExtractor={(item) => item.id}
-        getItemLayout={(data, index) => {
-          return {
-            length: 75,
-            offset: 75 * index,
-            index: index,
-          }
-        }}
+        getItemLayout={getItemLayout}
         scrollEventThrottle={1}
         onScroll={Animated.event(
           [{nativeEvent: {contentOffset: {y: scrollY}}}],
