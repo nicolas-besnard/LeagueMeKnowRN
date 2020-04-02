@@ -55,18 +55,40 @@ platform :ios do
 
   desc "Submit a new Beta Build to Apple TestFlight"
   desc "This will also make sure the profile is up to date"
-  lane :beta do |options|
-    current_build_number =  latest_testflight_build_number
+  lane :beta do
+    UI.header "Trying to find next build number"
+    testflight_build_number = latest_testflight_build_number.to_i
+    last_build_number = get_build_number.to_i
 
-    bump_build(number: current_build_number + 1)
+    UI.message "latest_testflight_build_number #{testflight_build_number}"
+    UI.message "get_build_number #{last_build_number}"
+
+    next_build_number = [testflight_build_number, last_build_number].max + 1
+
+    UI.message "next build number: #{next_build_number}"
+
+    increment_build_number(build_number: next_build_number)
+
+    # scan(
+    #   scheme: "TestFlight",
+    # )
 
     # match(type: "appstore") # more information: https://codesigning.guide
+    #
+    #build_app
     gym(
-      scheme: "Testflight",
-      output_directory: "./fastlane/builds",
+      scheme: "TestFlight",
+      output_directory: "./builds",
       clean: true,
+      derived_data_path: './DerivedData'
     )
-    #pilot
+
+    #upload_to_testflight
+    pilot(
+      ipa: "./builds/LeagueMeKnow.ipa",
+      skip_waiting_for_build_processing: true
+    )
+
 
     # sh "your_script.sh"
     # You can also use other beta testing services here (run `fastlane actions`)
