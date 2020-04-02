@@ -27,11 +27,36 @@ platform :ios do
     scan
   end
 
+  desc "Take screenshots"
+  lane :screenshots do
+    scan(
+      scheme: "LeagueMeKnowUITests",
+      build_for_testing: true,
+      derived_data_path: "./build"
+    )
+    snapshot
+    frameit(
+      path: "./fastlane/screenshots",
+      silver: true
+    )
+    sh("find screenshots/ -type f -name \'*_framed*\'| while read f; do mv \"$f\" \"`echo $f | sed 's/_framed//'`\"; done")
+  end
+
+  desc "Upload screenshots to App Store"
+  lane :upload_screenshots do
+    upload_to_app_store(
+      skip_binary_upload: true,
+      skip_metadata: true,
+      skip_app_version_update: true,
+      force: true, # skip HTML file validation before upload
+      overwrite_screenshots: false,
+    )
+  end
+
   desc "Submit a new Beta Build to Apple TestFlight"
   desc "This will also make sure the profile is up to date"
   lane :beta do |options|
     current_build_number =  latest_testflight_build_number
-
 
     bump_build(number: current_build_number + 1)
 

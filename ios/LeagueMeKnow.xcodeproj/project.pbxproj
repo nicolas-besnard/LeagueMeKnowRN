@@ -17,6 +17,8 @@
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* LeagueMeKnowTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* LeagueMeKnowTests.m */; };
 		5A2D7DB0243507300025D324 /* LeagueMeKnowUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2D7DAF243507300025D324 /* LeagueMeKnowUITests.swift */; };
+		5A2D7DB824350A8A0025D324 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2D7DB724350A8A0025D324 /* SnapshotHelper.swift */; };
+		5A2D7DBA24352C4F0025D324 /* title.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5A2D7DB924352C4F0025D324 /* title.strings */; };
 		8A916747A219A1CA72BDE963 /* libPods-LeagueMeKnow-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0313A6BBDA287191732A4E42 /* libPods-LeagueMeKnow-tvOS.a */; };
 		933A385CEF7CDC3606420A80 /* libPods-LeagueMeKnow.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 984757C6E67093C169D2F1E9 /* libPods-LeagueMeKnow.a */; };
 		B12BD7238150794D55AA764B /* libPods-LeagueMeKnow-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F3253E102462A455DE3037D0 /* libPods-LeagueMeKnow-tvOSTests.a */; };
@@ -69,6 +71,8 @@
 		5A2D7DAD243507300025D324 /* LeagueMeKnowUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LeagueMeKnowUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A2D7DAF243507300025D324 /* LeagueMeKnowUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeagueMeKnowUITests.swift; sourceTree = "<group>"; };
 		5A2D7DB1243507300025D324 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5A2D7DB724350A8A0025D324 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
+		5A2D7DB924352C4F0025D324 /* title.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = title.strings; path = "fastlane/screenshots/en-US/title.strings"; sourceTree = SOURCE_ROOT; };
 		5ADE4A552433518C00B60C95 /* LeagueMeKnow.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = LeagueMeKnow.entitlements; path = LeagueMeKnow/LeagueMeKnow.entitlements; sourceTree = "<group>"; };
 		5E4EB9722642492F6E4C88A3 /* Pods-LeagueMeKnow-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LeagueMeKnow-tvOS.release.xcconfig"; path = "Target Support Files/Pods-LeagueMeKnow-tvOS/Pods-LeagueMeKnow-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		8DCB55FF0632AF7309BF3D71 /* Pods-LeagueMeKnow-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LeagueMeKnow-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-LeagueMeKnow-tvOSTests/Pods-LeagueMeKnow-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -172,7 +176,9 @@
 		5A2D7DAE243507300025D324 /* LeagueMeKnowUITests */ = {
 			isa = PBXGroup;
 			children = (
+				5A2D7DB724350A8A0025D324 /* SnapshotHelper.swift */,
 				5A2D7DAF243507300025D324 /* LeagueMeKnowUITests.swift */,
+				5A2D7DB924352C4F0025D324 /* title.strings */,
 				5A2D7DB1243507300025D324 /* Info.plist */,
 			);
 			path = LeagueMeKnowUITests;
@@ -419,6 +425,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A2D7DBA24352C4F0025D324 /* title.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -621,6 +628,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A2D7DB0243507300025D324 /* LeagueMeKnowUITests.swift in Sources */,
+				5A2D7DB824350A8A0025D324 /* SnapshotHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

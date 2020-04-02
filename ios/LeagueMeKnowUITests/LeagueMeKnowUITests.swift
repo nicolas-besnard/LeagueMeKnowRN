@@ -25,20 +25,18 @@ class LeagueMeKnowUITests: XCTestCase {
     func testExample() throws {
         // UI tests must launch the application that they test.
         let app = XCUIApplication()
+        setupSnapshot(app)
         app.launch()
 
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        XCUIApplication().otherElements["BTN2"].waitForExistence(timeout: 30)
-        snapshot("01Launch")
-    }
+        sleep(5)
+      
+        let teamsButtonTab = app.buttons["TeamsButton"]
+        XCTAssertTrue(teamsButtonTab.exists)
 
-    func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTOSSignpostMetric.applicationLaunch]) {
-                XCUIApplication().launch()
-            }
-        }
+        snapshot("01Matches")
+
+        teamsButtonTab.tap()
+        sleep(5)
+        snapshot("02Teams")
     }
 }

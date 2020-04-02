@@ -8,21 +8,21 @@
  * @format
  */
 
-import 'react-native-gesture-handler';
-import React, {useEffect} from 'react';
-import {SafeAreaView, StatusBar, Image} from 'react-native';
-import {Notification, Notifications} from 'react-native-notifications';
+import 'react-native-gesture-handler'
+import React, {useEffect} from 'react'
+import {SafeAreaView, StatusBar, Image} from 'react-native'
+import {Notification, Notifications} from 'react-native-notifications'
 
-import {NavigationContainer} from '@react-navigation/native';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {NavigationContainer} from '@react-navigation/native'
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 
-import {backgroundColor, tabColor, borderColor} from './colors';
-import MatchesView from './MatchesView/MatchesView';
-import TeamsView from './TeamsView/TeamsView';
-import {LeagueFavoritesProvider} from '@contexts/leagueFavorites';
+import {backgroundColor, tabColor, borderColor} from './colors'
+import MatchesView from './MatchesView/MatchesView'
+import TeamsView from './TeamsView/TeamsView'
+import {LeagueFavoritesProvider} from '@contexts/leagueFavorites'
 import {NotificationCompletion} from 'react-native-notifications/lib/dist/interfaces/NotificationCompletion'
 
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator()
 
 const App = () => {
   useEffect(() => {
@@ -31,12 +31,12 @@ const App = () => {
         notification: Notification,
         completion: (response: NotificationCompletion) => void,
       ) => {
-        console.log(JSON.stringify(notification.payload));
+        console.log(JSON.stringify(notification.payload))
 
         // Calling completion on iOS with `alert: true` will present the native iOS inApp notification.
-        completion({alert: true, sound: true, badge: false});
+        completion({alert: true, sound: true, badge: false})
       },
-    );
+    )
   }, [])
 
   const style = {
@@ -59,15 +59,13 @@ const App = () => {
           screenOptions={({route}) => ({
             tabBarIcon: ({focused}) => {
               let iconName
-              let opacity
+              const opacity = focused ? 1 : 0.4
 
               if (route.name === 'Matches') {
-                opacity = focused ? 1 : 0.4;
                 iconName = focused
                   ? require('../images/league-active.png')
                   : require('../images/league-inactive.png')
               } else if (route.name === 'Teams') {
-                opacity = focused ? 1 : 0.4;
                 iconName = focused
                   ? require('../images/team-active.png')
                   : require('../images/team-inactive.png')
@@ -81,12 +79,26 @@ const App = () => {
               )
             },
           })}>
-          <Tab.Screen name="Matches" component={MatchesView} />
-          <Tab.Screen name="Teams" component={TeamsView} />
+          <Tab.Screen
+            options={{
+              tabBarTestID: 'MatchesButton',
+              tabBarAccessibilityLabel: 'MatchesButton',
+            }}
+            name="Matches"
+            component={MatchesView}
+          />
+          <Tab.Screen
+            options={{
+              tabBarTestID: 'TeamsButton',
+              tabBarAccessibilityLabel: 'TeamsButton',
+            }}
+            name="Teams"
+            component={TeamsView}
+          />
         </Tab.Navigator>
       </LeagueFavoritesProvider>
     </NavigationContainer>
-  );
+  )
 }
 
-export default App;
+export default App
