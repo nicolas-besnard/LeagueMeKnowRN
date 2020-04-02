@@ -1,6 +1,6 @@
 import {isBefore, isToday} from 'date-fns'
 import React, {useRef, useState, useCallback} from 'react'
-import {SectionList, StyleSheet, View, Animated, PixelRatio} from 'react-native'
+import {SectionList, StyleSheet, View, Animated, PixelRatio, Text} from 'react-native'
 import sectionListGetItemLayout from 'react-native-section-list-get-item-layout'
 import {MatchFavoritesProvider} from '@contexts/matchFavorites'
 import {useLeagueFavoritesContext} from '@contexts/leagueFavorites'
@@ -13,6 +13,14 @@ import {HEADER_SCROLL_DISTANCE} from '../LeaguePicker'
 import useMatches from '../useMatches'
 
 const AnimatedSectionList = Animated.createAnimatedComponent(SectionList)
+
+const EmptyMatchsList = () => {
+  return (
+    <View style={{flex:1, backgroundColor: backgroundColor, justifyContent: 'center', alignItems: 'center'}}>
+      <Text style={{color: 'white', fontSize: 20, textAlign: 'center'}}>You must select a league to display matches</Text>
+    </View>
+  )
+}
 
 const Matches = () => {
   const listRef = useRef(null)
@@ -45,6 +53,7 @@ const Matches = () => {
       }, 150)
     }
   })
+
   const getItemLayout = useCallback(
     sectionListGetItemLayout({
       // The height of the row with rowData at the given sectionIndex and rowIndex
@@ -57,7 +66,7 @@ const Matches = () => {
       getSeparatorHeight: () => 1 / PixelRatio.get(), // The height of your separators
       listHeaderHeight: 40, // The height of your list header
     })
-  , [])
+    , [])
 
   const translateY = scrollY.interpolate({
     inputRange: [0, HEADER_SCROLL_DISTANCE],
@@ -70,6 +79,12 @@ const Matches = () => {
       <LeaguePicker scrollY={scrollY} />
       <AnimatedSectionList
         ref={listRef}
+        contentContainerStyle={{
+          ...(sections.length === 0 && {
+            height: '100%'
+          })
+        }}
+        ListEmptyComponent={EmptyMatchsList}
         style={{
           transform: [{translateY: translateY}],
         }}
