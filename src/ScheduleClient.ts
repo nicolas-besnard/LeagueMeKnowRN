@@ -41,30 +41,32 @@ class ScheduleClient {
   static async fetchMatchesFromRemoteServer({leagueIds}: {leagueIds: LeagueIds}): Promise<Match[]> {
     const events = await getSchedule(leagueIds)
 
-    return events.map((event) => {
-      return {
-        id: event.match.id,
-        name: event.blockName,
-        team1: {
-          name: event.match.teams[0].name,
-          code: event.match.teams[0].code,
-          logoUrl: event.match.teams[0].image,
-          record: event.match.teams[0].record,
-          league: event.league,
-        },
-        team2: {
-          name: event.match.teams[1].name,
-          code: event.match.teams[1].code,
-          logoUrl: event.match.teams[1].image,
-          record: event.match.teams[1].record,
-          league: event.league,
-        },
-        startDate: new Date(Date.parse(event.startTime)).toDateString(),
-        startTime: new Date(Date.parse(event.startTime)),
-        state: event.state,
-        league: event.league.name,
-      }
-    })
+    return events
+      .filter((event) => event.match)
+      .map((event) => {
+        return {
+          id: event.match.id,
+          name: event.blockName,
+          team1: {
+            name: event.match.teams[0].name,
+            code: event.match.teams[0].code,
+            logoUrl: event.match.teams[0].image,
+            record: event.match.teams[0].record,
+            league: event.league,
+          },
+          team2: {
+            name: event.match.teams[1].name,
+            code: event.match.teams[1].code,
+            logoUrl: event.match.teams[1].image,
+            record: event.match.teams[1].record,
+            league: event.league,
+          },
+          startDate: new Date(Date.parse(event.startTime)).toDateString(),
+          startTime: new Date(Date.parse(event.startTime)),
+          state: event.state,
+          league: event.league.name,
+        }
+      })
   }
 }
 
