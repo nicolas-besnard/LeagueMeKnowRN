@@ -1,5 +1,5 @@
 import {isAfter} from 'date-fns'
-const API_URL = 'https://esports-api.lolesports.com/persisted/gw';
+const API_URL = 'https://esports-api.lolesports.com/persisted/gw'
 type RequestMethod = 'GET' | 'POST'
 interface RequestHeader {
   [header: string]: string

@@ -28,7 +28,7 @@ class LeagueMeKnowUITests: XCTestCase {
         setupSnapshot(app)
         app.launch()
 
-        sleep(5)
+        sleep(2)
       
         let teamsButtonTab = app.buttons["TeamsButton"]
         XCTAssertTrue(teamsButtonTab.exists)
@@ -36,7 +36,16 @@ class LeagueMeKnowUITests: XCTestCase {
         snapshot("01Matches")
 
         teamsButtonTab.tap()
-        sleep(5)
+        sleep(2)
         snapshot("02Teams")
+        sleep(2)
+      
+        let goToTeamMatchesButtons = app.otherElements.matching(identifier: "goToTeamMatchesButton")
+      
+        XCTAssertTrue(goToTeamMatchesButtons.count > 0)
+
+        let firstButton = goToTeamMatchesButtons.element(boundBy: 0)
+        firstButton.tap()
+        snapshot("03TeamMatches")
     }
 }

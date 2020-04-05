@@ -48,7 +48,9 @@ class MatchesPresenter {
       [],
     )
 
-    return sections.sort((a, b) => b.startDate.getTime() - a.startDate.getTime())
+    return sections.sort(
+      (a, b) => b.startDate.getTime() - a.startDate.getTime(),
+    )
   }
 }
 

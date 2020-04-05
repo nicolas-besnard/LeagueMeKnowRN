@@ -6,7 +6,10 @@ import type {MatchSection} from 'MatchesPresenter'
 import type {LeagueIds} from 'MatchCache'
 
 // eslint-disable-next-line prettier/prettier
-const useMatches = (leagueIds: LeagueIds = [], callback = (_matchs: MatchSection[]) => {}): MatchSection[] => {
+const useMatches = (
+  leagueIds: LeagueIds = [],
+  callback = (_matchs: MatchSection[]) => {},
+): MatchSection[] => {
   const [sections, setMatchSections] = useState<MatchSection[]>([])
 
   useEffect(() => {

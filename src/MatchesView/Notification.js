@@ -1,6 +1,6 @@
 import React from 'react'
-import { Image, TouchableWithoutFeedback } from 'react-native'
-import { Notifications } from 'react-native-notifications'
+import {Image, TouchableWithoutFeedback} from 'react-native'
+import {Notifications} from 'react-native-notifications'
 import {
   useMatchFavoritesDispatch,
   useMatchFavoritesState,
@@ -11,7 +11,7 @@ const Notification = ({match}) => {
   const matchFavoritesState = useMatchFavoritesState()
 
   const matchIsInFavoris = matchFavoritesState.find(
-    favoriteMatch => favoriteMatch.id === match.id,
+    (favoriteMatch) => favoriteMatch.id === match.id,
   )
 
   if (matchIsInFavoris) {

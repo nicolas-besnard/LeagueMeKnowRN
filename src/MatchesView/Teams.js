@@ -14,7 +14,8 @@ const Teams = ({match}) => {
           <FastImage
             style={{width: 45, height: 45}}
             source={{uri: match.team1.logoUrl}}
-          />)}
+          />
+        )}
       </View>
       <Text style={[styles.text, styles.vs]}> VS </Text>
       <View style={styles.team2Container}>
@@ -22,7 +23,8 @@ const Teams = ({match}) => {
           <FastImage
             style={{width: 45, height: 45}}
             source={{uri: match.team2.logoUrl}}
-          />)}
+          />
+        )}
         <Text style={[styles.text, styles.team2]}>{match.team2.name}</Text>
       </View>
     </View>

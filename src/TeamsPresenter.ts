@@ -14,6 +14,7 @@ class TeamsPresenter {
 
   teams(): Team[] {
     const teams: GroupedTeam = this.matches
+      .filter((match) => match.name.startsWith('Week'))
       .filter((m) => isBefore(new Date(m.startTime), new Date()))
       .reduce((hash: GroupedTeam, match) => {
         if (match.team1.code !== 'TBD') {

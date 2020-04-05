@@ -1,6 +1,6 @@
 import React from 'react'
 import FastImage from 'react-native-fast-image'
-import {StyleSheet, Text, View} from 'react-native'
+import {StyleSheet, Text, View, TouchableWithoutFeedback, Image} from 'react-native'
 import {
   backgroundColor,
   blueColor,
@@ -9,26 +9,32 @@ import {
 } from '../colors'
 import flipper from '../flipper'
 
-const Team = ({team}) => {
+const Team = ({team, onPress}) => {
   return (
-    <View style={styles.container}>
-      <View style={styles.teamInfo}>
-        {flipper.displayTeamLogo && (
-          <FastImage
-            style={{width: 45, height: 45, marginRight: 30}}
-            source={{uri: team.logoUrl}}
-          />
-        )}
-        <Text style={styles.teamName}>{team.name}</Text>
-        <Text style={styles.league}>{team.league.name}</Text>
-      </View>
-      <View>
-        <View style={styles.scoreContainer}>
-          <Text style={styles.wins}>{team.record.wins}W</Text>
-          <Text style={styles.looses}>{team.record.losses}L</Text>
+    <TouchableWithoutFeedback
+      accessibilityLabel="goToTeamMatchesButton"
+      testID="goToTeamMatchesButton"
+      onPress={onPress}>
+      <View style={styles.container}>
+        <View style={styles.teamInfo}>
+          {flipper.displayTeamLogo && (
+            <FastImage
+              style={{width: 45, height: 45, marginRight: 30}}
+              source={{uri: team.logoUrl}}
+            />
+          )}
+          <Text style={styles.teamName}>{team.name}</Text>
+          <Text style={styles.league}>{team.league.name}</Text>
         </View>
+        <View>
+          <View style={styles.scoreContainer}>
+            <Text style={styles.wins}>{team.record.wins}W</Text>
+            <Text style={styles.looses}>{team.record.losses}L</Text>
+          </View>
+        </View>
+        <Image style={{marginLeft: 30, width: 20, height: 20}}source={require('../../images/chevron.png')} />
       </View>
-    </View>
+    </TouchableWithoutFeedback>
   )
 }
 

@@ -1,5 +1,5 @@
 import {MatchState} from 'MatchCache'
-import {isAfter} from 'date-fns';
+import {isAfter} from 'date-fns'
 import httpClient from 'utils/httpClient'
 
 interface LeagueJSON {
@@ -18,11 +18,24 @@ interface TeamJSON {
   image: string
   league: LeagueJSON
   record: RecordJSON
+  result: ResultJSON
 }
 
 interface StrategyJSON {
   type: string
   count: number
+}
+
+enum Outcome {
+  win = 'win',
+  loss = 'loss',
+}
+
+type OutcomeJSON = Outcome | null
+
+interface ResultJSON {
+  outcome: OutcomeJSON
+  gameWins: number
 }
 
 interface MatchJSON {
@@ -69,7 +82,7 @@ async function getSchedule(leagueIds: string[]): Promise<EventJSON[]> {
     `/getSchedule?${parameters}`,
   )
 
-  const schedules: EventJSON[] = result.data.schedule.events
+  let schedules: EventJSON[] = result.data.schedule.events
   let nextPage = result.data.schedule.pages.older
 
   while (nextPage) {
@@ -80,7 +93,7 @@ async function getSchedule(leagueIds: string[]): Promise<EventJSON[]> {
     } as any)
     console.log('[httpClient] getSchedule - fetch new page', nextPage)
     result = await httpClient(`/getSchedule?${parameters}`)
-    schedules.concat(result.data.schedule.events)
+    schedules = schedules.concat(result.data.schedule.events)
     nextPage = result.data.schedule.pages.older
   }
 

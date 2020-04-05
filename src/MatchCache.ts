@@ -4,7 +4,7 @@ import {add, isBefore, parseISO} from 'date-fns'
 import type {Maybe} from 'monads'
 
 const matchesCacheKey: string = 'matchesv1'
-const matchesCacheDurationInMinutes: number = 30
+const matchesCacheDurationInMinutes: number = 60
 
 type LeagueIds = string[]
 
@@ -36,6 +36,7 @@ interface BaseMatch {
   id: string
   team1: Team
   team2: Team
+  winnerTeamCode: string | null
   state: MatchState
   startDate: string
   name: string
@@ -83,13 +84,15 @@ class MatchCache {
 
     const {matches, fetchedAt} = leagueMatches
 
+    console.log({fetchedAt})
+
     const fetchedMoreThanFiveMinutesAgo = isBefore(
       add(parseISO(fetchedAt), {minutes: matchesCacheDurationInMinutes}),
       new Date(),
     )
 
     if (fetchedMoreThanFiveMinutesAgo) {
-      console.log('[MatchCache] Cache has expired')
+      console.log('[MatchCache] Cache has expired', {fetchedAt})
       await this.removeExpiredSlug({cachedSchedules: cachedSchedules})
       return null
     }
@@ -124,7 +127,11 @@ class MatchCache {
   }
 
   // eslint-disable-next-line prettier/prettier
-  async removeExpiredSlug({cachedSchedules}: {cachedSchedules: CachedSchedule[]}) {
+  async removeExpiredSlug({
+    cachedSchedules,
+  }: {
+    cachedSchedules: CachedSchedule[]
+  }) {
     console.log('[MatchCache] Removing expired slugs')
     const newMatches = cachedSchedules.filter(
       (schedule) =>

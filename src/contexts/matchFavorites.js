@@ -47,7 +47,7 @@ function matchFavoritesReducer(state, action) {
       return newState
     }
     case 'remove': {
-      const newState = state.filter(match => match.id !== action.match.id)
+      const newState = state.filter((match) => match.id !== action.match.id)
       saveFavoritesInStorage(newState)
       return newState
     }
@@ -79,7 +79,7 @@ const useMatchFavorites = () => {
       }
     }
 
-    getMatchFavorites().then(data => dispatch({type: 'init', ids: data}))
+    getMatchFavorites().then((data) => dispatch({type: 'init', ids: data}))
   }, [])
 
   return {state, dispatch}
